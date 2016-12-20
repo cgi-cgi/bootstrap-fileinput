@@ -41,7 +41,7 @@
 
     NAMESPACE = '.fileinput';
     MODAL_ID = 'kvFileinputModal';
-    FRAMES = '.file-preview-frame:visible';
+    FRAMES = '.file-preview-frame';
     STYLE_SETTING = 'style="width:{width};height:{height};"';
     OBJECT_PARAMS = '<param name="controller" value="true" />\n' +
         '<param name="allowFullScreen" value="true" />\n' +
@@ -1361,13 +1361,13 @@
             var self = this, deleteExtraData = self.deleteExtraData || {},
                 resetProgress = function () {
                     var hasFiles = self.isUploadable ? previewCache.count(self.id) : self.$element.get(0).files.length;
-                    if (self.$preview.find('.kv-file-remove:visible').length === 0 && !hasFiles) {
+                    if (self.$preview.find('.kv-file-remove').length === 0 && !hasFiles) {
                         self.reset();
                         self.initialCaption = '';
                     }
                 };
             self._initZoomButton();
-            self.$preview.find('.kv-file-remove:visible').each(function () {
+            self.$preview.find('.kv-file-remove').each(function () {
                 var $el = $(this), vUrl = $el.data('url') || self.deleteUrl, vKey = $el.data('key');
                 if (isEmpty(vUrl) || vKey === undefined) {
                     return;
@@ -1697,7 +1697,7 @@
             if (!self.showPreview) {
                 return;
             }
-            self._getThumbs('.file-preview-success:visible').each(function () {
+            self._getThumbs('.file-preview-success').each(function () {
                 var $thumb = $(this), $remove = $thumb.find('.kv-file-remove');
                 $remove.removeAttr('disabled');
                 handler($remove, 'click', function () {
@@ -2023,7 +2023,7 @@
                 return;
             }
             self._initZoomButton();
-            self.$preview.find('.kv-file-remove:visible').each(function () {
+            self.$preview.find('.kv-file-remove').each(function () {
                 var $el = $(this), $frame = $el.closest(FRAMES), hasError, id = $frame.attr('id'),
                     ind = $frame.attr('data-fileindex'), n, cap, status;
                 handler($el, 'click', function () {
@@ -2064,7 +2064,7 @@
                     });
                 });
             });
-            self.$preview.find('.kv-file-upload:visible').each(function () {
+            self.$preview.find('.kv-file-upload').each(function () {
                 var $el = $(this);
                 handler($el, 'click', function () {
                     var $frame = $el.closest(FRAMES), ind = $frame.attr('data-fileindex');
